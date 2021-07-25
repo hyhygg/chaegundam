@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul li{
+            padding: 5;
+            border: 2px solid red;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            var $menu = $("ul.menu");
+            var count = 0;
+
+            // 추가 버튼 클릭시 새 li 항목을 ul.menu 자식으로 추가
+            $("#btnAdd").click(function(){
+                count++;
+                var $newItem = $("<li>new menu-" + count + "</li>");
+                // 1번째 방법
+                // 새로 추가한 li항목은 click 등록되어 있지 않으므로
+                // 등록한 후에 추가한다.
+                $menu.append($newItem);
+            });
+
+            // 처음에 있던 li이던, 나중에 추가한 li이던지
+            // 관계없이 ul.menu는 이벤트 버블링을 통해서
+            // 이벤트를 전달받는다.
+            $("ul.menu").on("click", "li", function(e){
+                alert($(this).html());
+            });
+
+            // 처음에 있던 li 이던, 나중에 추가한 li이던지
+            // $("ul.menu").on("click", function(e){
+            //     if(e.target.tagName == "LI"){
+            //         alert($(e.target).html());
+            //     }
+            // });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <button id="btnAdd">추가</button>
+    </div>
+    <ul class="menu">
+        <li>menu1</li>
+        <li>menu2</li>
+        <li>menu3</li>
+        <li>menu4</li>
+    </ul>
+</body>
+</html>

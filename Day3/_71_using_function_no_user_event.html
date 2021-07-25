@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul, li {
+            border: 1px #777 solid;
+            margin: 10px;
+        }
+        ul {
+            padding: 10px;
+        }
+        li.select {
+            background-color: #ccc;
+        }
+        #output {
+            border: 1px solid black;
+            min-height: 100px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        var $menu = null;
+        var $outuput = null;
+        var count = null;   // 전역변수
+
+        $(document).ready(function(){
+            init();
+            initEvent();
+
+        });
+
+        function init(){
+            $menu = $("ul.menu");
+            $outuput = $("#output");
+            count = 0;
+        }
+
+        function initEvent(){
+            $("#btnAdd").click(function(){
+                var $menuItem = addItem();
+                addOutput($menuItem); 
+            });
+        }
+
+        function addItem(){
+            // 아이템 추가
+            count++;
+            var $newItem = $("<li>new-" + count + "</li>");
+            $menu.append($newItem);
+
+            return $newItem;
+        }
+        
+        function addOutput($newItem){
+            // 로그 출력
+            $output.prepend("<p>추가 아이템=" + $newItem.text() + 
+                ", 아이템 개수=" + $menu.children().length + "</p>");
+        }
+
+    </script>
+</head>
+<body>
+    <!--1) 추가 버튼을 누르면-->
+    <div>
+        <button id="btnAdd">추가</button>
+    </div>
+    <!--2) 새로운 <li> 항목이 추가된다-->
+    <ul class="menu">
+        <li>menu1</li>
+        <li>menu2</li>
+        <li>menu3</li>
+        <li>menu4</li>
+    </ul>
+    <!--3) 추가된 정보를 출력한다-->
+    <p>추가/삭제 정보가 출력되는 영역</p>
+    <div id="output">
+
+    </div>
+</body>
+</html>

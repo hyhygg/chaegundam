@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            var $targetList = $(".target");
+            
+            $targetList.click(function(){
+                var $target = $(this);
+
+                var sw = $target.data("sw");    // $target.attr("data-sw")
+                sw = !sw;
+                $target.data("sw", sw);
+
+                if(sw)
+                    $target.attr("src", "./images/dog1.jpg");
+                else
+                    $target.attr("src", "./images/dog2.jpg");
+            });
+        });
+    </script>
+</head>
+<body
+   <div class="panel1">
+       <p>테스트1</p>
+       <img src="./images/dog1.jpg" class="target" data-sw="true">
+   </div>
+   <div class="panel2">
+    <p>테스트2</p>
+    <img src="./images/dog1.jpg" class="target" data-sw="true">
+</div>
+<div class="panel3">
+    <p>테스트3</p>
+    <img src="./images/dog1.jpg" class="target" data-sw="true">
+</div>
+</body>
+</html>
